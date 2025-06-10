@@ -2,23 +2,25 @@
 
 This project implements a Convolutional Neural Network (CNN) model using TensorFlow and OpenCV to detect human blood groups from fingerprint images. It includes image preprocessing, model training, evaluation, and saving the final model.
 
-## 📂 Dataset Structure
+## 📁 Dataset Folder Structure
 
-dataset/
-├── A+/
-├── A-/
-├── B+/
-├── B-/
-├── AB+/
-├── AB-/
-├── O+/
-└── O-/
+Each folder in the dataset corresponds to a blood group label.
+
+| Blood Group | Folder Name |
+|-------------|-------------|
+| A Positive  | `A+/`       |
+| A Negative  | `A-/`       |
+| B Positive  | `B+/`       |
+| B Negative  | `B-/`       |
+| AB Positive | `AB+/`      |
+| AB Negative | `AB-/`      |
+| O Positive  | `O+/`       |
+| O Negative  | `O-/`       |
+
 
 ## 📸 Sample Dataset Screenshot
 
 ![Dataset Screenshot](screenshots/A+.png)
-
----
 
 ## 📌 Project Workflow
 
@@ -50,7 +52,8 @@ A simple CNN model with the following layers:
 - **Dense (Softmax)**
 
 **Screenshot:**
-![Model Summary Screenshot](screenshots/initial_page.png)
+![Model Summary Screenshot](screenshots/intital_page.png)
+![Confsusion Matrix](screenshots/Screenshot 2025-06-10 115517.png)
 
 ### 3. **Model Training**
 
@@ -62,12 +65,9 @@ A simple CNN model with the following layers:
 
 model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_val, y_val))
 
-
 4. Model Evaluation
 Loads the trained .h5 model.
 Evaluates using a validation split via ImageDataGenerator.
-
-
 
 5. Model Saving
 Final model is saved as: blood_group_cnn_model.h5
@@ -76,24 +76,27 @@ Use load_model() from Keras to reload the trained model.
 ⚙️ Requirements
 Install the required libraries with: pip install tensorflow opencv-python numpy scikit-learn
 
-📁 File Structure
+## 📁 File Structure
 
-├── dataset/
-├── screenshots/
-│   ├── dataset_structure.png
-│   ├── preprocessing_output.png
-│   ├── model_summary.png
-│   ├── training_accuracy.png
-│   └── confusion_matrix.png
-├── preprocess.py
-├── train_model.py
-├── evaluate_model.py
-├── X_train.npy
-├── X_val.npy
-├── y_train.npy
-├── y_val.npy
-├── blood_group_cnn_model.h5
-└── README.md
+| File/Folder             | Description                                                |
+|-------------------------|------------------------------------------------------------|
+| `dataset/`              | Contains folders for each blood group (A+, A-, B+, etc.)   |
+| `screenshots/`          | Contains all screenshots used in the README                |
+| ├── `dataset_structure.png`     | Visual of dataset directory tree               |
+| ├── `preprocessing_output.png`  | Output after preprocessing sample image        |
+| ├── `model_summary.png`         | Summary of the CNN model architecture          |
+| ├── `training_accuracy.png`     | Accuracy/loss graph during training             |
+| └── `confusion_matrix.png`      | Confusion matrix after evaluation               |
+| `preprocess.py`         | Script to preprocess images and save them as `.npy`        |
+| `train_model.py`        | Script to build, train, and save the CNN model             |
+| `evaluate_model.py`     | Script to load the model and evaluate on validation data   |
+| `X_train.npy`           | Numpy array of preprocessed training images                |
+| `X_val.npy`             | Numpy array of validation images                           |
+| `y_train.npy`           | One-hot labels for training data                           |
+| `y_val.npy`             | One-hot labels for validation data                         |
+| `blood_group_cnn_model.h5` | Saved trained Keras model                         |
+| `README.md`             | This file – contains project overview and instructions      |
+
 📊 Results
 Trained with 10 epochs
 
